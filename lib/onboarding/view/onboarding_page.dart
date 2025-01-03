@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
+import '../../../design_system/design_system.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: _isRegisterPage
             ? _buildRegisterPage()
@@ -50,18 +52,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     top: 20,
                     left: 20,
                     child: Image.asset(
-                      'assets/images/gojek.png', // Logo Gojek di kiri atas
+                      'assets/images/gojek.png',
                       width: 100,
-                      height: 50,
+                      height: 25,
                     ),
                   ),
                   Positioned(
                     top: 20,
                     right: 0,
                     child: Image.asset(
-                      'assets/images/language.png', // Logo Gojek di kanan atas
+                      'assets/images/language.png',
                       width: 100,
-                      height: 50,
+                      height: 25,
                     ),
                   ),
                   Positioned(
@@ -72,25 +74,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            minimumSize: Size(double.infinity, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
+                          style: AppButtonStyles.primaryButton,
                           onPressed: () {
                             Get.toNamed(AppRoutes.LOGIN);
                           },
-                          child: Text('Masuk', style: TextStyle(fontSize: 16)),
+                          child: Text('Masuk',
+                              style: AppTextStyles.h4
+                                  .copyWith(color: AppColors.white)),
                         ),
                         SizedBox(height: 8),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
-                            minimumSize: Size(double.infinity, 48),
-                            side: BorderSide(color: Colors.green),
+                            minimumSize: Size(double.infinity, 50),
+                            side: BorderSide(color: AppColors.green),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
                           onPressed: () {
@@ -99,15 +97,42 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             });
                           },
                           child: Text(
-                            'Belum ada akun? Daftar dulu',
-                            style: TextStyle(fontSize: 16, color: Colors.green),
+                            'Belum ada akun?, Daftar dulu',
+                            style: AppTextStyles.h4
+                                .copyWith(color: AppColors.green),
                           ),
                         ),
                         SizedBox(height: 16),
-                        Text(
-                          'Dengan masuk atau mendaftar, kamu menyetujui\nKetentuan Layanan dan Kebijakan Privasi.',
+                        Text.rich(
+                          TextSpan(
+                            text:
+                                'Dengan masuk atau mendaftar, kamu menyetujui\n',
+                            style: AppTextStyles.paragraph2
+                                .copyWith(color: AppColors.black),
+                            children: [
+                              TextSpan(
+                                text: 'Ketentuan Layanan',
+                                style: AppTextStyles.paragraph2
+                                    .copyWith(color: Color(0xFF0081A0)),
+                              ),
+                              TextSpan(
+                                text: ' dan ',
+                                style: AppTextStyles.paragraph2
+                                    .copyWith(color: AppColors.black),
+                              ),
+                              TextSpan(
+                                text: 'Kebijakan Privasi',
+                                style: AppTextStyles.paragraph2
+                                    .copyWith(color: Color(0xFF0081A0)),
+                              ),
+                              TextSpan(
+                                text: '.',
+                                style: AppTextStyles.paragraph2
+                                    .copyWith(color: AppColors.green),
+                              ),
+                            ],
+                          ),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -134,16 +159,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
           SizedBox(height: 24),
           Text(
             title,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.h2.copyWith(color: AppColors.black),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16),
           Text(
             description,
-            style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            style: AppTextStyles.paragraph2.copyWith(color: AppColors.black),
             textAlign: TextAlign.center,
           ),
         ],
@@ -160,16 +182,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: [
           Text(
             'Daftar Akun',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.h4.copyWith(color: AppColors.white),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 24),
           TextField(
             decoration: InputDecoration(
               labelText: 'Nama Lengkap',
+              labelStyle:
+                  AppTextStyles.paragraph1.copyWith(color: AppColors.white),
               border: OutlineInputBorder(),
             ),
           ),
@@ -177,6 +198,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
           TextField(
             decoration: InputDecoration(
               labelText: 'Email',
+              labelStyle:
+                  AppTextStyles.paragraph1.copyWith(color: AppColors.white),
               border: OutlineInputBorder(),
             ),
           ),
@@ -185,25 +208,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
             obscureText: true,
             decoration: InputDecoration(
               labelText: 'Kata Sandi',
+              labelStyle:
+                  AppTextStyles.paragraph1.copyWith(color: AppColors.white),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 24),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              minimumSize: Size(double.infinity, 48),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
+            style: AppButtonStyles.primaryButton,
             onPressed: () {
-              // Simulasi pendaftaran selesai
               setState(() {
                 _isRegisterPage = false;
               });
             },
-            child: Text('Daftar', style: TextStyle(fontSize: 16)),
+            child: Text('Daftar',
+                style: AppTextStyles.h5.copyWith(color: AppColors.white)),
           ),
           TextButton(
             onPressed: () {
@@ -211,7 +230,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 _isRegisterPage = false;
               });
             },
-            child: Text('Kembali', style: TextStyle(color: Colors.green)),
+            child: Text('Kembali',
+                style:
+                    AppTextStyles.h5.copyWith(color: AppColors.primaryGreen)),
           ),
         ],
       ),
