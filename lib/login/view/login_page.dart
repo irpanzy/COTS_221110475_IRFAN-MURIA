@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../routes/app_routes.dart';
 import '../../design_system/design_system.dart'; // Replace with the actual path
 
 class LoginPage extends StatelessWidget {
@@ -13,7 +15,7 @@ class LoginPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous page
+            Get.back(); // Navigasi kembali menggunakan GetX
           },
         ),
         title: Image.asset(
@@ -99,7 +101,8 @@ class LoginPage extends StatelessWidget {
               child: ElevatedButton(
                 style: AppButtonStyles.primaryButton,
                 onPressed: () {
-                  // Handle Continue button press
+                  // Navigasi ke MainPage menggunakan GetX
+                  Get.toNamed(AppRoutes.MAIN);
                 },
                 child: const Text(
                   "Continue",
@@ -117,7 +120,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-void main() => runApp(MaterialApp(
-      home: LoginPage(),
-    ));
